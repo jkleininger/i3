@@ -13,6 +13,11 @@ client.urgent           #111111 #900000 #ffffff #900000
 bindsym $mod+Return exec xterm
 bindsym $mod+b           exec   firefox
 
+bindsym $mod+l           exec   lockit
+bindsym $mod+Shift+l     exec   lock-and-suspend
+
+bindsym $mod+t           exec   tp-toggle
+
 bindsym $mod+Shift+c     kill
 
 bindsym $mod+r           exec   dmenu_run
