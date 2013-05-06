@@ -4,6 +4,12 @@ font xft:Terminus 8
 
 floating_modifier        $mod
 
+#                       border  bg      text    indicator
+client.focused          #111111 #222222 #ffcc00 #663300
+client.focused_inactive #333333 #5f676a #ffffff #484e50
+client.unfocused        #111111 #111111 #dd8800 #442200
+client.urgent           #111111 #900000 #ffffff #900000
+
 bindsym $mod+Return exec xterm
 bindsym $mod+b           exec   firefox
 
@@ -76,4 +82,17 @@ bindsym $mod+z mode "resize"
 bar {
 	font xft:Terminus 8
         status_command i3status
+
+	colors {
+        	background         #222222
+        	statusline         #ffcc00
+        	separator          #995500
+
+                #                  border  bg      text
+        	focused_workspace  #ffcc00 #111111 #ffcc00
+        	active_workspace   #442200 #111111 #ffcc00
+        	inactive_workspace #333333 #222222 #888888
+        	urgent_workspace   #2f343a #900000 #ffffff
+	}
 }
+
