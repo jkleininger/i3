@@ -1,0 +1,1 @@
+xlock -mode blank -timeout 1 -mousemotion -usefirst +description

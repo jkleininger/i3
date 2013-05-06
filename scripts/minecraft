@@ -1,0 +1,2 @@
+cd
+java -cp ".minecraft/bin/*" -Djava.library.path=".minecraft/bin/natives/" net.minecraft.client.Minecraft Qrab 12345
