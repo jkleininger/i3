@@ -5,7 +5,7 @@ font xft:Terminus 8
 floating_modifier        $mod
 
 #                       border  bg      text    indicator
-client.focused          #111111 #222222 #ffcc00 #663300
+client.focused          #111111 #554433 #ffcc00 #663300
 client.focused_inactive #333333 #5f676a #ffffff #484e50
 client.unfocused        #111111 #111111 #dd8800 #442200
 client.urgent           #111111 #900000 #ffffff #900000
