@@ -1,414 +1,530 @@
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Maintainer: 
-"       Amir Salihefendic
-"       http://amix.dk - amix@amix.dk
-"
-" Version: 
-"       5.0 - 29/05/12 15:43:36
-"
-" Blog_post: 
-"       http://amix.dk/blog/post/19691#The-ultimate-Vim-configuration-on-Github
-"
-" Awesome_version:
-"       Get this config, nice color schemes and lots of plugins!
-"
-"       Install the awesome version from:
-"
-"           https://github.com/amix/vimrc
-"
-" Syntax_highlighted:
-"       http://amix.dk/vim/vimrc.html
-"
-" Raw_version: 
-"       http://amix.dk/vim/vimrc.txt
-"
-" Sections:
-"    -> General
-"    -> VIM user interface
-"    -> Colors and Fonts
-"    -> Files and backups
-"    -> Text, tab and indent related
-"    -> Visual mode related
-"    -> Moving around, tabs and buffers
-"    -> Status line
-"    -> Editing mappings
-"    -> vimgrep searching and cope displaying
-"    -> Spell checking
-"    -> Misc
-"    -> Helper functions
-"
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+set history=1000
 
+set autochdir
 
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => General
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Sets how many lines of history VIM has to remember
-set history=700
+syntax on " Enable syntax highlighting
+filetype plugin indent on " Enable filetype detection, plugins, and indentation
 
-" Enable filetype plugins
-filetype plugin on
-filetype indent on
+nnoremap " `
 
-" Set to auto read when a file is changed from the outside
-set autoread
+set history=1000
 
-" With a map leader it's possible to do extra key combinations
-" like <leader>w saves the current file
-let mapleader = ","
-let g:mapleader = ","
+set autochdir
 
-" Fast saving
-nmap <leader>w :w!<cr>
+syntax on " Enable syntax highlighting
+filetype plugin indent on " Enable filetype detection, plugins, and indentation
 
-" :W sudo saves the file 
-" (useful for handling the permission-denied error)
-command W w !sudo tee % > /dev/null
-
-set number
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => VIM user interface
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Set 7 lines to the cursor - when moving vertically using j/k
-set so=7
-
-" Turn on the WiLd menu
+nnoremap " `
+nnoremap ` '
+set hidden " allow hidden buffers
+runtime macros/matchit.vim
 set wildmenu
+set wildmode=list:longest,full
 
-" Ignore compiled files
-set wildignore=*.o,*~,*.pyc
-if has("win16") || has("win32")
-    set wildignore+=*/.git/*,*/.hg/*,*/.svn/*,*/.DS_Store
-else
-    set wildignore+=.git\*,.hg\*,.svn\*
-endif
+set backupdir=~/.local/share/vim
+set directory=~/.local/share/vim
+set nobackup
+set nowritebackup
+set noswapfile
 
-"Always show current position
-set ruler
+set nocompatible
+set relativenumber " Show the line number
+set mouse=r " Let the mouse work in the console
+set showmatch
+set ruler " Always show cursor
+set cursorline
 
-" Height of the command bar
-set cmdheight=2
+" display current mode and partially typed commands
+set showmode
+set showcmd
 
-" A buffer becomes hidden when it is abandoned
-set hid
-
-" Configure backspace so it acts as it should act
-set backspace=eol,start,indent
-set whichwrap+=<,>,h,l
-
-" Ignore case when searching
+" case-insensitive searches, unless caps are involved
 set ignorecase
-
-" When searching try to be smart about cases 
 set smartcase
 
-" Highlight search results
-set hlsearch
+set foldmethod=indent
+set foldlevel=99
 
-" Makes search act like search in modern browsers
-set incsearch 
+set shortmess=atI
 
-" Don't redraw while executing macros (good performance config)
-set lazyredraw 
+set autoread
 
-" For regular expressions turn magic on
+set equalalways
+
 set magic
+set so=7
 
-" Show matching brackets when text indicator is over them
-set showmatch 
-" How many tenths of a second to blink when matching brackets
-set mat=2
+set clipboard=unnamed
 
-" No annoying sound on errors
-set noerrorbells
-set novisualbell
-set t_vb=
-set tm=500
+" tabs -> spaces
+" default 4-space dd
+set expandtab
+set shiftwidth=4
+set softtabstop=4
+set tabstop=4
+set shiftround
+set cindent
+set smartindent
+set autoindent
 
-" Add a bit extra margin to the left
-set foldcolumn=1
+set hlsearch
+set incsearch
+
+highlight Pmenu ctermbg=238 gui=bold
+
+" textwidth limits
+autocmd BufRead /tmp/mutt-* set tw=72 " mutt limit to 72 characters
+"autocmd BufRead *.txt set tw=78 " text files limit to 78 characters
+
+" vertical line at 80th column
+"highlight ColorColumn ctermbg=lightgrey guibg=lightgrey
+set colorcolumn=80
+
+" java-specific
+let java_highlight_all=1
+let java_highlight_functions="style"
+let java_allow_cpp_keywords=1
+
+let mapleader=","
+let g:mapleader=","
+let g:tex_flavor="pdflatex"
+"let g:tex_flavor="latex"
+
+let g:GPGUseAgent=0
+let g:GPGPrefArmor=1
+let g:GPGDefaultRecipients=["Albert Chang <albert.chang@gmx.com>"]
+
+" NERDTree
+map <F2> :silent NERDTreeToggle<CR>
+" Toggle relative/absolute numbers
+map <F3> :call NumberToggle()<CR>
+" Hypergit
+"map <F4> :silent ToggleGitMenu<CR>
+
+set pastetoggle=<leader>p
+
+set confirm
+
+" when ~/.vimrc is changed, autoload
+autocmd! BufWritePost .vimrc source %
+
+" arduino syntax highlighting
+autocmd! BufNewFile,BufRead *.pde,*.ino setlocal ft=arduino
+
+"autocmd! BufNew,BufRead :call UMiniBufExplorer
+"let g:miniBufExplorerMoreThanOne=0
+"let g:miniBufExplMapWindowNavVim = 1
+
+let g:ConqueTerm_PyVersion = 3
+let g:ConqueTerm_FastMode = 0
+let g:ConqueTerm_ReadUnfocused = 1
+let g:ConqueTerm_InsertOnEnter = 0
+let g:ConqueTerm_CloseOnEnd = 0
+
+" omnicompletion
+"set omnifunc=syntaxcomplete#Complete
+"set completeopt=menuone,menu,longest,preview
+"let g:SuperTabDefaultCompletionType = "<C-X><C-O>"
+
+"set listchars=tab:>-,trail:·,eol:$
+nmap <silent> <leader>s :set nolist!<CR>
+
+" Automatically toggle between relative and absolute numbers
+autocmd! InsertEnter * set number
+autocmd! InsertLeave * set relativenumber
+
+" autorun files
+set autowrite
+command! -buffer W make
+
+" indentation & write + load
+autocmd! FileType ruby set shiftwidth=2 softtabstop=2 tabstop=2 makeprg=ruby\ %
+autocmd! FileType python set shiftwidth=4 softtabstop=4 tabstop=4 makeprg=python\ %
+autocmd! FileType perl set shiftwidth=4 softtabstop=4 tabstop=4 makeprg=perl\ %
+autocmd! FileType java set shiftwidth=4 softtabstop=4 tabstop=4 makeprg=javac\ %
+autocmd! FileType lua set shiftwidth=4 softtabstop=4 tabstop=4 makeprg=lua\ %
+autocmd! FileType tex set shiftwidth=4 softtabstop=4 tabstop=4 makeprg=pdflatex\ %
+autocmd! FileType c,cpp set shiftwidth=4 softtabstop=4 tabstop=4 makeprg=make
+autocmd! FileType sh set shiftwidth=2 softtabstop=2 tabstop=2 makeprg=./%
+autocmd! BufNewFile,BufRead PKGBUILD set shiftwidth=2 softtabstop=2 tabstop=2 makeprg=makepkg
+
+" indentation only
+" no indentation
+autocmd! FileType asciidoc set nocindent noautoindent
+" 4-space explicit
+autocmd! FileType javascript,arduino,php,html,xhtml,css,xml set shiftwidth=4 softtabstop=4 tabstop=4
+" 2-space
+autocmd! FileType vhdl set shiftwidth=2 softtabstop=2 tabstop=2
+" 8-space
+
+" auto-chmod
+autocmd BufWritePost * call NoExtNewFile()
+
+function! NoExtNewFile()
+    if getline(1) =~ "^#!.*/bin/"
+        if &filetype == ""
+            filetype detect
+        endif
+        silent !chmod a+x <afile>
+    endif
+endfunction
+
+" http://stackoverflow.com/questions/4016649/vim-word-completion-navigating-with-j-and-k#4016817
+
+" use templates
+autocmd! BufNewFile * call LoadTemplate()
+" jump between %VAR% placeholders in Insert mode with <Ctrl-p>
+inoremap <C-p> <ESC>/%\u.\{-1,}%<cr>c/%/e<cr>
+
+function! LoadTemplate()
+    silent! 0r ~/.vim/skel/tmpl.%:e
+
+    " Highlight %VAR% placeholders with the Todo color group
+    syn match Todo "%\u\+%" containedIn=ALL
+endfunction
+
+function! NumberToggle()
+    if(&relativenumber == 1)
+        set number
+    else
+        set relativenumber
+    endif
+endfunction
+nnoremap ` '
+set hidden " allow hidden buffers
+runtime macros/matchit.vim
+set wildmenu
+set wildmode=list:longest,full
+
+set backupdir=~/.local/share/vim
+set directory=~/.local/share/vim
+set nobackup
+set nowritebackup
+set noswapfile
+
+set nocompatible
+set relativenumber " Show the line number
+set mouse=r " Let the mouse work in the console
+set showmatch
+set ruler " Always show cursor
+set cursorline
+
+" display current mode and partially typed commands
+set showmode
+set showcmd
+
+" case-insensitive searches, unless caps are involved
+set ignorecase
+set smartcase
+
+set foldmethod=indent
+set foldlevel=99
+
+set shortmess=atI
+
+set autoread
+
+set equalalways
+
+set magic
+set so=7
+
+set clipboard=unnamed
+
+" tabs -> spaces
+" default 4-space dd
+set expandtab
+set shiftwidth=4
+set softtabstop=4
+set tabstop=4
+set shiftround
+set cindent
+set smartindent
+set autoindent
+
+set hlsearch
+set incsearch
+
+highlight Pmenu ctermbg=238 gui=bold
+
+" textwidth limits
+autocmd BufRead /tmp/mutt-* set tw=72 " mutt limit to 72 characters
+"autocmd BufRead *.txt set tw=78 " text files limit to 78 characters
+
+" vertical line at 80th column
+"highlight ColorColumn ctermbg=lightgrey guibg=lightgrey
+set colorcolumn=80
+
+" java-specific
+let java_highlight_all=1
+let java_highlight_functions="style"
+let java_allow_cpp_keywords=1
+
+let mapleader=","
+let g:mapleader=","
+let g:tex_flavor="pdflatex"
+"let g:tex_flavor="latex"
+
+" NERDTree
+map <F2> :silent NERDTreeToggle<CR>
+" Toggle relative/absolute numbers
+map <F3> :call NumberToggle()<CR>
+" Hypergit
+"map <F4> :silent ToggleGitMenu<CR>
+
+set pastetoggle=<leader>p
+
+set confirm
+
+" when ~/.vimrc is changed, autoload
+autocmd! BufWritePost .vimrc source %
+
+" arduino syntax highlighting
+autocmd! BufNewFile,BufRead *.pde,*.ino setlocal ft=arduino
+
+"autocmd! BufNew,BufRead :call UMiniBufExplorer
+"let g:miniBufExplorerMoreThanOne=0
+"let g:miniBufExplMapWindowNavVim = 1
+
+let g:ConqueTerm_PyVersion = 3
+let g:ConqueTerm_FastMode = 0
+let g:ConqueTerm_ReadUnfocused = 1
+let g:ConqueTerm_InsertOnEnter = 0
+let g:ConqueTerm_CloseOnEnd = 0
+
+" omnicompletion
+"set omnifunc=syntaxcomplete#Complete
+"set completeopt=menuone,menu,longest,preview
+"let g:SuperTabDefaultCompletionType = "<C-X><C-O>"
+
+"set listchars=tab:>-,trail:·,eol:$
+nmap <silent> <leader>s :set nolist!<CR>
+
+" Automatically toggle between relative and absolute numbers
+autocmd! InsertEnter * set number
+autocmd! InsertLeave * set relativenumber
+
+" autorun files
+set autowrite
+command! -buffer W make
+
+" indentation & write + load
+autocmd! FileType ruby set shiftwidth=2 softtabstop=2 tabstop=2 makeprg=ruby\ %
+autocmd! FileType python set shiftwidth=4 softtabstop=4 tabstop=4 makeprg=python\ %
+autocmd! FileType perl set shiftwidth=4 softtabstop=4 tabstop=4 makeprg=perl\ %
+autocmd! FileType java set shiftwidth=4 softtabstop=4 tabstop=4 makeprg=javac\ %
+autocmd! FileType lua set shiftwidth=4 softtabstop=4 tabstop=4 makeprg=lua\ %
+autocmd! FileType tex set shiftwidth=4 softtabstop=4 tabstop=4 makeprg=pdflatex\ %
+autocmd! FileType c,cpp set shiftwidth=4 softtabstop=4 tabstop=4 makeprg=make
+autocmd! FileType sh set shiftwidth=2 softtabstop=2 tabstop=2 makeprg=./%
+autocmd! BufNewFile,BufRead PKGBUILD set shiftwidth=2 softtabstop=2 tabstop=2 makeprg=makepkg
+
+" indentation only
+" no indentation
+autocmd! FileType asciidoc set nocindent noautoindent
+" 4-space explicit
+autocmd! FileType javascript,arduino,php,html,xhtml,css,xml set shiftwidth=4 softtabstop=4 tabstop=4
+" 2-space
+autocmd! FileType vhdl set shiftwidth=2 softtabstop=2 tabstop=2
+" 8-space
+
+" auto-chmod
+autocmd BufWritePost * call NoExtNewFile()
+
+function! NoExtNewFile()
+    if getline(1) =~ "^#!.*/bin/"
+        if &filetype == ""
+            filetype detect
+        endif
+        silent !chmod a+x <afile>
+    endif
+endfunction
+
+" http://stackoverflow.com/questions/4016649/vim-word-completion-navigating-with-j-and-k#4016817
+
+" use templates
+autocmd! BufNewFile * call LoadTemplate()
+" jump between %VAR% placeholders in Insert mode with <Ctrl-p>
+inoremap <C-p> <ESC>/%\u.\{-1,}%<cr>c/%/e<cr>
+
+function! LoadTemplate()
+    silent! 0r ~/.vim/skel/tmpl.%:e
+
+    " Highlight %VAR% placeholders with the Todo color group
+    syn match Todo "%\u\+%" containedIn=ALL
+endfunction
+
+function! NumberToggle()
+    if(&relativenumber == 1)
+        set number
+    else
+        set relativenumber
+    endif
+endfunction
 
 
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => Colors and Fonts
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Enable syntax highlighting
-syntax enable 
 
-try
-    colorscheme desert
-catch
-endtry
 
-set background=dark
 
-" Set extra options when running in GUI mode
-if has("gui_running")
-    set guioptions-=T
-    set guioptions-=e
+
+
+
+
+
+
+
+
+
+
+
+if has("gui_runnung")
+    set guioptions=agiLt
     set t_Co=256
     set guitablabel=%M\ %t
 endif
 
-" Set utf8 as standard encoding and en_US as the standard language
-set encoding=utf8
-
-" Use Unix as the standard file type
-set ffs=unix,dos,mac
 
 
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => Files, backups and undo
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Turn backup off, since most stuff is in SVN, git et.c anyway...
-set nobackup
-set nowb
-set noswapfile
 
+"########## colors ###########################################################
 
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => Text, tab and indent related
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Use spaces instead of tabs
-set expandtab
-
-" Be smart when using tabs ;)
-set smarttab
-
-" 1 tab == 4 spaces
-set shiftwidth=4
-set tabstop=4
-
-" Linebreak on 500 characters
-set lbr
-set tw=500
-
-set ai "Auto indent
-set si "Smart indent
-set wrap "Wrap lines
-
-
-""""""""""""""""""""""""""""""
-" => Visual mode related
-""""""""""""""""""""""""""""""
-" Visual mode pressing * or # searches for the current selection
-" Super useful! From an idea by Michael Naumann
-vnoremap <silent> * :call VisualSelection('f', '')<CR>
-vnoremap <silent> # :call VisualSelection('b', '')<CR>
-
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => Moving around, tabs, windows and buffers
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Treat long lines as break lines (useful when moving around in them)
-map j gj
-map k gk
-
-" Map <Space> to / (search) and Ctrl-<Space> to ? (backwards search)
-map <space> /
-map <c-space> ?
-
-" Disable highlight when <leader><cr> is pressed
-map <silent> <leader><cr> :noh<cr>
-
-" Smart way to move between windows
-map <C-j> <C-W>j
-map <C-k> <C-W>k
-map <C-h> <C-W>h
-map <C-l> <C-W>l
-
-" Close the current buffer
-map <leader>bd :Bclose<cr>
-
-" Close all the buffers
-map <leader>ba :1,1000 bd!<cr>
-
-" Useful mappings for managing tabs
-map <leader>tn :tabnew<cr>
-map <leader>to :tabonly<cr>
-map <leader>tc :tabclose<cr>
-map <leader>tm :tabmove 
-map <leader>t<leader> :tabnext 
-
-" Opens a new tab with the current buffer's path
-" Super useful when editing files in the same directory
-map <leader>te :tabedit <c-r>=expand("%:p:h")<cr>/
-
-" Switch CWD to the directory of the open buffer
-map <leader>cd :cd %:p:h<cr>:pwd<cr>
-
-" Specify the behavior when switching between buffers 
-try
-  set switchbuf=useopen,usetab,newtab
-  set stal=2
-catch
-endtry
-
-" Return to last edit position when opening files (You want this!)
-autocmd BufReadPost *
-     \ if line("'\"") > 0 && line("'\"") <= line("$") |
-     \   exe "normal! g`\"" |
-     \ endif
-" Remember info about open buffers on close
-set viminfo^=%
-
-
-""""""""""""""""""""""""""""""
-" => Status line
-""""""""""""""""""""""""""""""
-" Always show the status line
-set laststatus=2
-
-" Format the status line
-set statusline=\ %{HasPaste()}%F%m%r%h\ %w\ \ CWD:\ %r%{getcwd()}%h\ \ \ Line:\ %l
-
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => Editing mappings
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Remap VIM 0 to first non-blank character
-map 0 ^
-
-" Move a line of text using ALT+[jk] or Comamnd+[jk] on mac
-nmap <M-j> mz:m+<cr>`z
-nmap <M-k> mz:m-2<cr>`z
-vmap <M-j> :m'>+<cr>`<my`>mzgv`yo`z
-vmap <M-k> :m'<-2<cr>`>my`<mzgv`yo`z
-
-if has("mac") || has("macunix")
-  nmap <D-j> <M-j>
-  nmap <D-k> <M-k>
-  vmap <D-j> <M-j>
-  vmap <D-k> <M-k>
+set background=dark
+hi clear
+if exists("syntax_on")
+  syntax reset
 endif
+let g:colors_name = "nucolors"
 
-" Delete trailing white space on save, useful for Python and CoffeeScript ;)
-func! DeleteTrailingWS()
-  exe "normal mz"
-  %s/\s\+$//ge
-  exe "normal `z"
-endfunc
-autocmd BufWrite *.py :call DeleteTrailingWS()
-autocmd BufWrite *.coffee :call DeleteTrailingWS()
+hi Nontext                   guifg=#404040
+hi Normal                    guifg=#E6E1DC guibg=#151515
+hi Cursor                    guibg=#FF8939
+hi CursorLine                guibg=#202020
+hi LineNr                    guifg=#665544 guibg=#101010
+hi Search                    guibg=#5A647E
+hi VertSplit                 guifg=#1b1b1b guibg=#1b1b1b
+hi Visual                    guibg=#5A647E
 
+" Folds
+" line used for closed folds
+hi Folded                    guifg=#5A647E guibg=#202020 
+hi FoldColumn                guifg=#505050 guibg=#050505
 
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => vimgrep searching and cope displaying
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" When you press gv you vimgrep after the selected text
-vnoremap <silent> gv :call VisualSelection('gv', '')<CR>
+" Misc
+" ----
+" directory names and other special names in listings
+hi Directory                 guifg=#A0CF5D 
 
-" Open vimgrep and put the cursor in the right position
-map <leader>g :vimgrep // **/*.<left><left><left><left><left><left><left>
-
-" Vimgreps in the current file
-map <leader><space> :vimgrep // <C-R>%<C-A><right><right><right><right><right><right><right><right><right>
-
-" When you press <leader>r you can search and replace the selected text
-vnoremap <silent> <leader>r :call VisualSelection('replace', '')<CR>
-
-" Do :help cope if you are unsure what cope is. It's super useful!
-"
-" When you search with vimgrep, display your results in cope by doing:
-"   <leader>cc
-"
-" To go to the next search result do:
-"   <leader>n
-"
-" To go to the previous search results do:
-"   <leader>p
-"
-map <leader>cc :botright cope<cr>
-map <leader>co ggVGy:tabnew<cr>:set syntax=qf<cr>pgg
-map <leader>n :cn<cr>
-map <leader>p :cp<cr>
+" Popup Menu
+" ----------
+" normal item in popup
+hi Pmenu                     guifg=#F6F3E8 guibg=#444444 
+" selected item in popup
+hi PmenuSel                  guifg=#000000 guibg=#A0CF5D 
+" scrollbar in popup
+hi PMenuSbar                 guibg=#5A647E 
+" thumb of the scrollbar in the popup
+hi PMenuThumb                guibg=#AAAAAA 
 
 
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => Spell checking
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Pressing ,ss will toggle and untoggle spell checking
-map <leader>ss :setlocal spell!<cr>
+"rubyComment
+hi Comment                   guifg=#809080 
+hi Todo                      guifg=#809080 guibg=NONE 
 
-" Shortcuts using <leader>
-map <leader>sn ]s
-map <leader>sp [s
-map <leader>sa zg
-map <leader>s? z=
+"Invisibles
+hi NonText                   guifg=#665544
+hi SpecialKey                guifg=#665544
 
+"rubyPseudoVariable
+"nil, self, symbols, etc
+hi Constant                  guifg=#7DC1CF
 
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => Misc
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Remove the Windows ^M - when the encodings gets messed up
-noremap <Leader>m mmHmt:%s/<C-V><cr>//ge<cr>'tzt'm
+"rubyClass, rubyModule, rubyDefine
+"def, end, include, etc
+hi Define                    guifg=#FFFFB9 gui=bold
 
-" Quickly open a buffer for scripbble
-map <leader>q :e ~/buffer<cr>
+"rubyInterpolation
+hi Delimiter                 guifg=#B8D68F
 
-" Toggle paste mode on and off
-map <leader>pp :setlocal paste!<cr>
+"rubyError, rubyInvalidVariable
+hi Error                     guifg=#FFFFFF guibg=#990000
 
+"rubyFunction
+hi Function                  guifg=#E84F4F gui=bold 
 
+"rubyIdentifier
+"@var, @@var, $var, etc
+hi Identifier                guifg=#4E9FB1 
 
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => Helper functions
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-function! CmdLine(str)
-    exe "menu Foo.Bar :" . a:str
-    emenu Foo.Bar
-    unmenu Foo
-endfunction 
+"rubyInclude
+"include, autoload, extend, load, require
+hi Include                   guifg=#E1AA5D gui=bold 
 
-function! VisualSelection(direction, extra_filter) range
-    let l:saved_reg = @"
-    execute "normal! vgvy"
+"rubyKeyword, rubyKeywordAsMethod
+"alias, undef, super, yield, callcc, caller, lambda, proc
+hi Keyword                   guifg=#E1AA5D
 
-    let l:pattern = escape(@", '\\/.*$^~[]')
-    let l:pattern = substitute(l:pattern, "\n$", "", "")
+" same as define
+hi Macro                     guifg=#E1AA5D 
 
-    if a:direction == 'b'
-        execute "normal ?" . l:pattern . "^M"
-    elseif a:direction == 'gv'
-        call CmdLine("vimgrep " . '/'. l:pattern . '/' . ' **/*.' . a:extra_filter)
-    elseif a:direction == 'replace'
-        call CmdLine("%s" . '/'. l:pattern . '/')
-    elseif a:direction == 'f'
-        execute "normal /" . l:pattern . "^M"
-    endif
+"rubyInteger
+hi Number                    guifg=#A0CF5D
 
-    let @/ = l:pattern
-    let @" = l:saved_reg
+" #if, #else, #endif
+hi PreCondit                 guifg=#E1AA5D 
+
+" generic preprocessor
+hi PreProc                   guifg=#E1AA5D 
+
+"rubyControl, rubyAccess, rubyEval
+"case, begin, do, for, if unless, while, until else, etc.
+hi Statement                 guifg=#E1AA5D 
+
+"rubyString
+hi String                    guifg=#A0CF5D
+
+hi Title                     guifg=#FFFFFF
+
+"rubyConstant
+hi Type                      guifg=#E84F4F 
+
+hi DiffAdd                   guifg=#E6E1DC guibg=#144212
+hi DiffDelete                guifg=#E6E1DC guibg=#660000
+
+hi link htmlTag              xmlTag
+hi link htmlTagName          xmlTagName
+hi link htmlEndTag           xmlEndTag
+
+hi xmlTag                    guifg=#E8BF6A
+hi xmlTagName                guifg=#E8BF6A
+hi xmlEndTag                 guifg=#E8BF6A
+
+" Status line - changes colors depending on insert mode
+" Standard
+hi User1          guifg=#E8BF6A   guibg=#202020   gui=bold
+hi User2          guifg=#E84F4F   guibg=#202020   gui=bold
+hi User3          guifg=#A0CF5D   guibg=#202020   gui=bold
+hi User4          guifg=#202020   guibg=#E8BF6A   gui=bold
+hi User5          guifg=#909090   guibg=#202020   
+hi User6          guifg=#40352D   guibg=#202020   
+hi User7          guifg=#202020   guibg=#202020   gui=bold
+hi StatusLine     guifg=#E6E1DC   guibg=#202020   gui=bold
+hi StatusLineNC   guifg=#606060   guibg=#202020   gui=bold
+
+function! InsertStatuslineColor(mode)
+
+  if a:mode == 'i' " Insert Mode
+    hi User4      guifg=#202020   guibg=#7DC1CF
+
+  elseif a:mode == 'r' " Replace Mode
+    hi User4      guifg=#202020   guibg=#E84F4F
+
+  else
+    hi User4      guifg=#202020   guibg=#E8BF6A
+
+  endif
 endfunction
 
-
-" Returns true if paste mode is enabled
-function! HasPaste()
-    if &paste
-        return 'PASTE MODE  '
-    en
-    return ''
-endfunction
-
-" Don't close window, when deleting a buffer
-command! Bclose call <SID>BufcloseCloseIt()
-function! <SID>BufcloseCloseIt()
-   let l:currentBufNum = bufnr("%")
-   let l:alternateBufNum = bufnr("#")
-
-   if buflisted(l:alternateBufNum)
-     buffer #
-   else
-     bnext
-   endif
-
-   if bufnr("%") == l:currentBufNum
-     new
-   endif
-
-   if buflisted(l:currentBufNum)
-     execute("bdelete! ".l:currentBufNum)
-   endif
-endfunction
-
+" Call function
+au InsertEnter * call InsertStatuslineColor(v:insertmode)
+au InsertLeave * hi statusline guifg=#E6E1DC   guibg=#202020
+au InsertLeave * hi User4      guifg=#202020   guibg=#E8BF6A

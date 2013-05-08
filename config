@@ -10,18 +10,24 @@ client.focused_inactive #333333 #5f676a #ffffff #484e50
 client.unfocused        #111111 #111111 #dd8800 #442200
 client.urgent           #111111 #900000 #ffffff #900000
 
-bindsym $mod+Return exec xterm
+## processes and programs ####################################
+bindsym $mod+Return      exec   urxvt
 bindsym $mod+b           exec   firefox
-
 bindsym $mod+l           exec   lockit
 bindsym $mod+Shift+l     exec   lock-and-suspend
-
 bindsym $mod+t           exec   tp-toggle
-
 bindsym $mod+Shift+c     kill
-
 bindsym $mod+r           exec   dmenu_run
 
+## audio controls ############################################
+bindsym XF86AudioMute        exec   amixer -q sset Master toggle
+bindsym XF86AudioRaiseVolume exec   amixer -q sset Master 2+
+bindsym XF86AudioLowerVolume exec   amixer -q sset Master 2-
+#bindsym XF86AudioPrev        exec   amixer sset Master toggle
+#bindsym XF86AudioNext        exec   amixer sset Master toggle
+#bindsym XF86AudioPlay        exec   amixer sset Master toggle
+
+## frames control ############################################
 bindsym $mod+Left        focus  left
 bindsym $mod+Down        focus  down
 bindsym $mod+Up          focus  up
@@ -37,38 +43,14 @@ bindsym $mod+v           split  v
 
 bindsym $mod+f           fullscreen
 
-# change container layout (stacked, tabbed, toggle split)
-bindsym $mod+s           layout stacking
-bindsym $mod+w           layout tabbed
-bindsym $mod+e           layout toggle split
+bindsym $mod+s           layout   stacking
+bindsym $mod+w           layout   tabbed
+bindsym $mod+e           layout   toggle split
 
-# toggle tiling / floating
 bindsym $mod+Shift+space floating toggle
 
-# change focus between tiling / floating windows
-bindsym $mod+space focus mode_toggle
-
-# focus the parent container
-bindsym $mod+a focus parent
-
-# focus the child container
-#bindsym $mod+d focus child
-
-bindsym $mod+1 workspace 1
-bindsym $mod+2 workspace 2
-bindsym $mod+3 workspace 3
-bindsym $mod+4 workspace 4
-bindsym $mod+5 workspace 5
-
-bindsym $mod+Shift+1 move container to workspace 1
-bindsym $mod+Shift+2 move container to workspace 2
-bindsym $mod+Shift+3 move container to workspace 3
-bindsym $mod+Shift+4 move container to workspace 4
-bindsym $mod+Shift+5 move container to workspace 5
-
-# bindsym $mod+Shift+c reload
-bindsym $mod+Shift+r restart
-bindsym $mod+Shift+q exec "i3-nagbar -t warning -m 'End X session?' -b 'Yes, exit i3' 'i3-msg exit'"
+bindsym $mod+a           focus    parent
+bindsym $mod+Shift+a     focus    child
 
 mode "resize" {
         bindsym Left   resize shrink    width  10 px or 10 ppt
@@ -79,21 +61,38 @@ mode "resize" {
         bindsym Return mode   "default"
         bindsym Escape mode   "default"
 }
-
 bindsym $mod+z mode "resize"
 
-# Start i3bar to display a workspace bar (plus the system information i3status
-# finds out, if available)
+## workspace control #########################################
+  bindsym $mod+1           workspace 1
+  bindsym $mod+2           workspace 2
+  bindsym $mod+3           workspace 3
+  bindsym $mod+4           workspace 4
+  bindsym $mod+5           workspace 5
+
+  bindsym $mod+Shift+1 move container to workspace 1
+  bindsym $mod+Shift+2 move container to workspace 2
+  bindsym $mod+Shift+3 move container to workspace 3
+  bindsym $mod+Shift+4 move container to workspace 4
+  bindsym $mod+Shift+5 move container to workspace 5
+
+## session control ##########################################
+  bindsym $mod+Shift+r restart
+  bindsym $mod+Shift+q exec "i3-nagbar -t warning -m 'End X session?' -b 'Yes, exit i3' 'i3-msg exit'"
+
+
 bar {
 	font xft:Terminus 8
-        status_command i3status
+    status_command i3status
+
+    position top
 
 	colors {
         	background         #222222
         	statusline         #ffcc00
         	separator          #995500
 
-                #                  border  bg      text
+            #                  border  bg      text
         	focused_workspace  #ffcc00 #111111 #ffcc00
         	active_workspace   #442200 #111111 #ffcc00
         	inactive_workspace #333333 #222222 #888888
