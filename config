@@ -53,12 +53,11 @@ bindsym $mod+a           focus    parent
 bindsym $mod+Shift+a     focus    child
 
 mode "resize" {
-        bindsym Left   resize shrink    width  10 px or 10 ppt
-        bindsym Down   resize grow      height 10 px or 10 ppt
-        bindsym Up     resize shrink    height 10 px or 10 ppt
-        bindsym Right  resize grow      width  10 px or 10 ppt
+        bindsym Left   resize shrink    width   1 px or  1 ppt
+        bindsym Down   resize grow      height  1 px or  1 ppt
+        bindsym Up     resize shrink    height  1 px or  1 ppt
+        bindsym Right  resize grow      width   1 px or  1 ppt
 
-        bindsym Return mode   "default"
         bindsym Escape mode   "default"
 }
 bindsym $mod+z mode "resize"
@@ -82,21 +81,8 @@ bindsym $mod+z mode "resize"
 
 
 bar {
-	font xft:Terminus 8
-    status_command i3status
-
-    position top
-
-	colors {
-        	background         #222222
-        	statusline         #ffcc00
-        	separator          #995500
-
-            #                  border  bg      text
-        	focused_workspace  #ffcc00 #111111 #ffcc00
-        	active_workspace   #442200 #111111 #ffcc00
-        	inactive_workspace #333333 #222222 #888888
-        	urgent_workspace   #2f343a #900000 #ffffff
-	}
+  status_command $HOME/scripts/conky-i3bar
 }
+
+
 

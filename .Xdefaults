@@ -6,8 +6,9 @@ Xft.hintstyle:              hintslight
 
 URxvt.depth:                32
 URxvt.geometry:             90x30
-URxvt.transparent:          false
+URxvt.transparent:          true
 URxvt.fading:               0
+URxvt.shading:              10
 ! URxvt.urgentOnBell:         true
 ! URxvt.visualBell:           true
 URxvt.loginShell:           true
@@ -17,7 +18,7 @@ URxvt.lineSpace:            0
 
 ! Fonts
 URxvt.allow_bold:           false
-URxvt*font: xft:Terminus-8
+URxvt*font:                 xft:Terminus-8
 
 ! Fix font space
 !URxvt*letterSpace: -1
