@@ -17,10 +17,22 @@ cpu_avg_samples       2
 TEXT
 
  [
-  { "full_text" : "${battery_short} ${battery_percent}%" , "color" : "\#979797" },
-  { "full_text" : "${if_up wlp3s0}${addr enp0s10}${endif}" , "color" : "\#979797" },
-  { "full_text" : "${if_up enp0s10}${addr enp0s10}${endif}" , "color" : "\#979797" },
-  { "full_text" : "${time %a %d %b %H:%M}", "color" : "\#979797" },
+  {
+    "full_text" : "${battery_short} ${battery_percent}%" , 
+    "color" : "\#979797"
+  },
+  {
+    "full_text" : "${if_up wlp3s0}${addr enp0s10}${endif}" ,
+    "color" : "\#979797" 
+  },
+  {
+    "full_text" : "${if_up enp0s10}${addr enp0s10}${endif}" ,
+    "color" : "\#979797"
+  },
+  {
+    "full_text" : "${time %a %d %b %H:%M}",
+    "color" : "\#979797"
+  },
  ],
 
 

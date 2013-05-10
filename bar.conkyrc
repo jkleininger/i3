@@ -1,0 +1,39 @@
+background true
+
+double_buffer yes
+
+own_window  yes
+own_window_transparent no
+own_window_type dock
+own_window_hints undecorate,above,sticky,skip_taskbar,skip_pager
+
+draw_borders no
+draw_graph_borders yes
+border_width 0
+border_inner_margin -1
+border_outer_margin -1
+
+draw_shades no
+
+gap_x -1
+gap_y -1
+# alignment bottom_left
+
+update_interval 1
+
+default_color 444477
+color0 554433
+color1 997755
+own_window_colour 030303
+
+use_xft yes
+xftfont Terminus:size=8
+
+override_utf8_locale yes
+
+use_spacer none
+minimum_size 1280 16
+maximum_width 2040
+
+TEXT
+${if_up enp0s10}$color0 L $color1${addr enp0s10}${endif} ${if_up wlp3s0}$color0 W $color1${addr wlp3s0}${endif} ${alignr} $color0[$color1${execi 60 $HOME/scripts/gmail}$color0] $color1${time %a %d %b %H:%M}

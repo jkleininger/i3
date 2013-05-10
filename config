@@ -81,6 +81,7 @@ bindsym $mod+z mode "resize"
 
 
 bar {
+  mode hide
   status_command $HOME/scripts/conky-i3bar
 }
 
