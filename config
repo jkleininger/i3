@@ -1,11 +1,19 @@
+new_window pixel 2
+focus_follows_mouse no
+
 set $mod Mod4
 
 font xft:Terminus 8
 
 floating_modifier        $mod
 
+
+#exec startupitem
+#exec_always commandtorun_even-on-i3-restart
+
+
 #                       border  bg      text    indicator
-client.focused          #111111 #554433 #ffcc00 #663300
+client.focused          #111111 #222529 #aabbff #454c5a
 client.focused_inactive #333333 #5f676a #ffffff #484e50
 client.unfocused        #111111 #111111 #dd8800 #442200
 client.urgent           #111111 #900000 #ffffff #900000
@@ -46,6 +54,7 @@ bindsym $mod+f           fullscreen
 bindsym $mod+s           layout   stacking
 bindsym $mod+w           layout   tabbed
 bindsym $mod+e           layout   toggle split
+bindsym $mod+space       layout   toggle all
 
 bindsym $mod+Shift+space floating toggle
 
@@ -69,11 +78,17 @@ bindsym $mod+z mode "resize"
   bindsym $mod+4           workspace 4
   bindsym $mod+5           workspace 5
 
+  bindsym $mod+0           workspace next
+  #bindsym $mod+[           workspace prev
+  #bindsym $mod+]           workspace next
+
   bindsym $mod+Shift+1 move container to workspace 1
   bindsym $mod+Shift+2 move container to workspace 2
   bindsym $mod+Shift+3 move container to workspace 3
   bindsym $mod+Shift+4 move container to workspace 4
   bindsym $mod+Shift+5 move container to workspace 5
+
+
 
 ## session control ##########################################
   bindsym $mod+Shift+r restart
@@ -82,6 +97,8 @@ bindsym $mod+z mode "resize"
 
 bar {
   mode hide
+  position bottom
+  workspace_buttons yes
   status_command $HOME/scripts/conky-i3bar
 }
 

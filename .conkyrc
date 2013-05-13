@@ -18,11 +18,15 @@ TEXT
 
  [
   {
-    "full_text" : "${battery_short} ${battery_percent}%" , 
+    "full_text" : "${battery_short}" , 
     "color" : "\#979797"
   },
   {
-    "full_text" : "${if_up wlp3s0}${addr enp0s10}${endif}" ,
+    "full_text" : "[${execi 60 $HOME/scripts/gmail}]" ,
+    "color" : "\#444477"
+  },
+  {
+    "full_text" : "${if_up wlp3s0}${addr wlp3s0}${endif}" ,
     "color" : "\#979797" 
   },
   {

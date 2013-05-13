@@ -1,5 +1,8 @@
-gmail_login=""  
-gmail_password=""
+#!/bin/bash
+credfile='/home/user/.gmail'
+
+gmail_login=$(sed -n '1p' $credfile)
+gmail_password=$(sed -n '2p' $credfile)
 
 nbmail="$(wget --secure-protocol=TLSv1 --timeout=3 -t 1 -q -O - \
 https://${gmail_login}:${gmail_password}@mail.google.com/mail/feed/atom \
@@ -7,7 +10,7 @@ https://${gmail_login}:${gmail_password}@mail.google.com/mail/feed/atom \
 | sed -e 's/.*<fullcount>//;s/<\/fullcount>.*//' 2>/dev/null)"
 
 if [ -z "$nbmail" ]; then
-echo "Error"
+echo "X"
 else
   if [ $nbmail != 0 ]; then
     echo $nbmail

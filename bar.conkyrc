@@ -13,21 +13,21 @@ border_width 0
 border_inner_margin -1
 border_outer_margin -1
 
-draw_shades no
+draw_shades yes
 
-gap_x -1
-gap_y -1
-# alignment bottom_left
+gap_x 0
+gap_y 0
 
 update_interval 1
 
-default_color 444477
-color0 554433
-color1 997755
-own_window_colour 030303
+default_color      444477
+color0             223355
+color1             557799
+own_window_colour  030309
 
 use_xft yes
 xftfont Terminus:size=8
+#xftfont Silkscreen:size=6
 
 override_utf8_locale yes
 
@@ -36,4 +36,8 @@ minimum_size 1280 16
 maximum_width 2040
 
 TEXT
-${if_up enp0s10}$color0 L $color1${addr enp0s10}${endif} ${if_up wlp3s0}$color0 W $color1${addr wlp3s0}${endif} ${alignr} $color0[$color1${execi 60 $HOME/scripts/gmail}$color0] $color1${time %a %d %b %H:%M}
+${if_up enp0s10}$color0 L $color1${addr enp0s10}${endif} \
+${if_up wlp3s0}$color0 W $color1${addr wlp3s0}${endif} \
+${alignr} \
+$color0[$color1${execi 60 $HOME/scripts/gmail}$color0] \
+$color1${time %a %d %b %H:%M}

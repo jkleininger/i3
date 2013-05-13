@@ -1,1 +1,2 @@
-xlock -mode blank -timeout 1 -mousemotion -usefirst +description
+i3lock -c 050a15
+#xlock -mode blank -timeout 1 -mousemotion -usefirst +description
