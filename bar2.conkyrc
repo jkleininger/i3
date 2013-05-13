@@ -1,11 +1,13 @@
-background true
+background no
 
 double_buffer yes
 
-own_window  yes
-own_window_transparent no
-own_window_type dock
-own_window_hints undecorate,above,sticky,skip_taskbar,skip_pager
+own_window  no
+out_to_x no
+out_to_console yes
+#own_window_transparent no
+#own_window_type dock
+#own_window_hints undecorate,above,sticky,skip_taskbar,skip_pager
 
 draw_borders no
 draw_graph_borders yes
@@ -26,9 +28,8 @@ color1             557799
 own_window_colour  030309
 
 use_xft yes
-#xftfont Terminus:size=8
-xftfont Silkscreen:size=6
-#xftfont White\ Rabbit:size=9
+xftfont Terminus:size=8
+#xftfont Silkscreen:size=6
 
 override_utf8_locale yes
 

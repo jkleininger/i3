@@ -14,6 +14,9 @@ use_spacer            left
 override_utf8_locale  no
 cpu_avg_samples       2
 
+color0                99ff00
+
+
 TEXT
 
  [
@@ -26,8 +29,8 @@ TEXT
     "color" : "\#444477"
   },
   {
-    "full_text" : "${if_up wlp3s0}${addr wlp3s0}${endif}" ,
-    "color" : "\#979797" 
+    "full_text" : "$color0 ${if_up wlp3s0}${addr wlp3s0}${endif}" ,
+    "color" : "${color0}" 
   },
   {
     "full_text" : "${if_up enp0s10}${addr enp0s10}${endif}" ,

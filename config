@@ -99,7 +99,8 @@ bar {
   mode hide
   position bottom
   workspace_buttons yes
-  status_command $HOME/scripts/conky-i3bar
+  status_command conky -c /home/user/.i3/bar2.conkyrc
+#  status_command $HOME/scripts/conky-i3bar
 }
 
 
