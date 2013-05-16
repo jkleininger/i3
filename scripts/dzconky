@@ -1,0 +1,16 @@
+#!/bin/sh
+
+X='0'
+Y='0'
+
+W='1280'
+H='12'
+
+FG='#558899'
+BG='#001019'
+
+FONT='Silkscreen-6'
+
+conky -c ~/.i3/dz.conkyrc | dzen2 -x $X -y $Y -h $H -w $W -fn $FONT -dock -bg $BG -fg $FG
+
+

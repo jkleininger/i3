@@ -7,10 +7,10 @@ font xft:Terminus 8
 
 floating_modifier        $mod
 
-
 #exec startupitem
 #exec_always commandtorun_even-on-i3-restart
 
+exec conky -c /home/user/.i3/bar.conkyrc
 
 #                       border  bg      text    indicator
 client.focused          #111111 #222529 #aabbff #454c5a
@@ -95,13 +95,13 @@ bindsym $mod+z mode "resize"
   bindsym $mod+Shift+q exec "i3-nagbar -t warning -m 'End X session?' -b 'Yes, exit i3' 'i3-msg exit'"
 
 
-bar {
-  mode hide
-  position bottom
-  workspace_buttons yes
-  status_command conky -c /home/user/.i3/bar2.conkyrc
+#bar {
+#  mode hide
+#  position bottom
+#  workspace_buttons yes
+#  status_command conky -c /home/user/.i3/bar2.conkyrc
 #  status_command $HOME/scripts/conky-i3bar
-}
+#}
 
 
 

@@ -1,0 +1,55 @@
+#!/bin/sh
+
+DZEN_FG="#5599AA"
+DZEN_BG="#00050A"
+H=12
+W=1280
+X=0
+Y=0
+FONT="Silkscreen-6"
+
+TDFORMAT='%a %d %b %H:%M'
+
+SLEEP=1
+
+#CMD="dzen2 -x $X -y $Y -w $W -h $H -fn $FONT -dock -bg $DZEN_BG -fg $DZEN_FG"
+CMD="dzen2 -fn $FONT -dock -bg $DZEN_BG -fg $DZEN_FG"
+
+while :; do
+sleep ${SLEEP}
+
+##### raw values ###############################################################
+
+percentVolume () {
+	VOL=$(amixer get Master | awk '/Mono:/ {print $4}' | tr -d '[]%')
+	MUTE=$(amixer get Master | awk '/Mono:/ {print $6}' | tr -d '[]')
+	echo -n $VOL
+	return
+}
+
+percentBattery() {
+	CHARGE=$(acpi -b | cut -d "," -f 2 | tr -d " %")
+	echo -n "${CHARGE}"
+	return
+}
+
+##### formatted values #########################################################
+pDate () {
+	TIME=$(date +"$TDFORMAT")
+	echo -n "${TIME}"
+	return
+}
+
+
+
+theText() {
+  pDate
+  percentVolume
+  percentBattery
+  echo
+  return
+}
+
+echo "$(theText)"
+done | $CMD &
+
