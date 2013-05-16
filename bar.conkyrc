@@ -12,8 +12,9 @@ draw_graph_borders yes
 border_width 0
 border_inner_margin -1
 border_outer_margin -1
-
 draw_shades yes
+
+default_bar_size 40 4
 
 gap_x 0
 gap_y 0
@@ -34,11 +35,16 @@ override_utf8_locale yes
 
 use_spacer none
 minimum_size 1280 16
-maximum_width 2040
+maximum_width 1280
 
 TEXT
 ${if_up enp0s10}$color0 L $color1${addr enp0s10}${endif} \
 ${if_up wlp3s0}$color0 W $color1${addr wlp3s0}${endif} \
+${battery_percent BAT0} ${battery_bar} \
+${alignc} \
+[${desktop}] \
 ${alignr} \
 $color0[$color1${execi 60 $HOME/scripts/gmail}$color0] \
 $color1${time %a %d %b %H:%M}
+
+
