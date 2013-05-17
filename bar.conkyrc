@@ -41,8 +41,8 @@ TEXT
 $color0 L$color1${if_up enp0s10}${addr enp0s10}${else}DOWN${endif} \
 $color0 W$color1${if_up wlp3s0}${addr wlp3s0}${else}DOWN${endif} \
 $color0 B$color1${battery_percent BAT0}% \
-${alignc} \
-$color0[$color1${desktop}${color0}] \
+$color0 CPU1$color1${cpu cpu1}% $color0 CPU2$color1${cpu cpu2}% \
 ${alignr} \
+$color0 D$color1${desktop}${color0} \
 $color0[$color1${execi 60 $HOME/scripts/gmail}$color0] \
 $color1${time %a %d %b %H:%M}
