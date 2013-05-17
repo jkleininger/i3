@@ -1,0 +1,15 @@
+#!/bin/sh
+
+X='720'
+Y='300'
+
+W='120'
+H='400'
+
+FG='#558899'
+BG='#001019'
+
+FONT='Silkscreen-6'
+
+conky -c ~/.i3/box.conkyrc | dzen2 -x $X -y $Y -h $H -w $W -fn $FONT -dock -bg $BG -fg $FG
+

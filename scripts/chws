@@ -1,0 +1,4 @@
+#!/bin/sh
+
+xdotool key Super+$1
+echo $1 > ~/scripts/curws

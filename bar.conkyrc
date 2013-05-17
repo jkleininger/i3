@@ -3,13 +3,13 @@ background true
 double_buffer yes
 
 own_window  yes
-own_window_transparent no
+own_window_transparent yes
 own_window_type panel
 #own_window_hints undecorate,above,sticky,skip_taskbar,skip_pager
 
 draw_borders no
 draw_graph_borders yes
-border_width 1
+border_width 0
 border_inner_margin -10
 border_outer_margin 1
 draw_shades no
@@ -24,7 +24,7 @@ update_interval 1
 default_color      444477
 color0             223355
 color1             557799
-own_window_colour  030309
+#own_window_colour  030309
 
 use_xft yes
 xftfont Silkscreen:size=6
@@ -32,7 +32,7 @@ xftfont Silkscreen:size=6
 #override_utf8_locale yes
 
 use_spacer none
-minimum_size 1 1
+minimum_size 1280 1
 maximum_width 1280
 
 
