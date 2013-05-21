@@ -6,9 +6,8 @@ xset +fp /usr/share/fonts/artwiz-fonts
 xset +fp /usr/share/fonts/local
 
 #exec stumpwm
-#exec i3
+exec i3
 #exec wmii
 #exec awesome -c ~/.config/awesome/rc.lua
-
-exec spectrwm
+#exec spectrwm
 

@@ -1,0 +1,3 @@
+#!/bin/sh
+echo $(amixer get Master | awk '/Mono:/ {print $4}' | tr -d '[]%')
+

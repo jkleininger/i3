@@ -1,16 +1,18 @@
-new_window pixel 2
+new_window normal
 focus_follows_mouse no
 
 set $mod Mod4
 
-font xft:Terminus 8
+font xft:Silkscreen 6
 
 floating_modifier        $mod
 
 #exec startupitem
 #exec_always commandtorun_even-on-i3-restart
 
-exec conky -c /home/user/.i3/bar.conkyrc
+#exec conky -c /home/user/.i3/bar.conkyrc
+exec echo "1" > $HOME/scripts/curws
+exec conky
 
 #                       border  bg      text    indicator
 client.focused          #111111 #222529 #aabbff #454c5a
@@ -29,8 +31,8 @@ bindsym $mod+r           exec   dmenu_run
 
 ## audio controls ############################################
 bindsym XF86AudioMute        exec   amixer -q sset Master toggle
-bindsym XF86AudioRaiseVolume exec   amixer -q sset Master 2+
-bindsym XF86AudioLowerVolume exec   amixer -q sset Master 2-
+bindsym XF86AudioRaiseVolume exec   amixer -q sset Master 5+ unmute
+bindsym XF86AudioLowerVolume exec   amixer -q sset Master 5- unmute
 #bindsym XF86AudioPrev        exec   amixer sset Master toggle
 #bindsym XF86AudioNext        exec   amixer sset Master toggle
 #bindsym XF86AudioPlay        exec   amixer sset Master toggle
@@ -72,11 +74,16 @@ mode "resize" {
 bindsym $mod+z mode "resize"
 
 ## workspace control #########################################
-  bindsym $mod+1           workspace 1
-  bindsym $mod+2           workspace 2
-  bindsym $mod+3           workspace 3
-  bindsym $mod+4           workspace 4
-  bindsym $mod+5           workspace 5
+  bindsym $mod+F1           workspace 1
+  bindsym $mod+F2           workspace 2
+  bindsym $mod+F3           workspace 3
+  bindsym $mod+F4           workspace 4
+  bindsym $mod+F5           workspace 5
+  bindsym $mod+1           exec chws 1
+  bindsym $mod+2           exec chws 2
+  bindsym $mod+3           exec chws 3
+  bindsym $mod+4           exec chws 4
+  bindsym $mod+5           exec chws 5
 
   bindsym $mod+0           workspace next
   #bindsym $mod+[           workspace prev
