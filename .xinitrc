@@ -10,4 +10,4 @@ exec i3
 #exec wmii
 #exec awesome -c ~/.config/awesome/rc.lua
 #exec spectrwm
-
+#exec openbox

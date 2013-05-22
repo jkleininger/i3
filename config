@@ -1,5 +1,5 @@
 new_window normal
-focus_follows_mouse no
+focus_follows_mouse yes
 
 set $mod Mod4
 
@@ -10,9 +10,9 @@ floating_modifier        $mod
 #exec startupitem
 #exec_always commandtorun_even-on-i3-restart
 
-#exec conky -c /home/user/.i3/bar.conkyrc
 exec echo "1" > $HOME/scripts/curws
 exec conky
+exec xbindkeys
 
 #                       border  bg      text    indicator
 client.focused          #111111 #222529 #aabbff #454c5a
@@ -21,18 +21,18 @@ client.unfocused        #111111 #111111 #dd8800 #442200
 client.urgent           #111111 #900000 #ffffff #900000
 
 ## processes and programs ####################################
-bindsym $mod+Return      exec   urxvt
-bindsym $mod+b           exec   firefox
-bindsym $mod+l           exec   lockit
-bindsym $mod+Shift+l     exec   lock-and-suspend
-bindsym $mod+t           exec   tp-toggle
+#bindsym $mod+Return      exec   urxvt
+#bindsym $mod+b           exec   firefox
+#bindsym $mod+l           exec   lockit
+#bindsym $mod+Shift+l     exec   lock-and-suspend
+#bindsym $mod+t           exec   tp-toggle
 bindsym $mod+Shift+c     kill
-bindsym $mod+r           exec   dmenu_run
+#bindsym $mod+r           exec   dmenu_run
 
 ## audio controls ############################################
-bindsym XF86AudioMute        exec   amixer -q sset Master toggle
-bindsym XF86AudioRaiseVolume exec   amixer -q sset Master 5+ unmute
-bindsym XF86AudioLowerVolume exec   amixer -q sset Master 5- unmute
+#bindsym XF86AudioMute        exec   amixer -q sset Master toggle
+#bindsym XF86AudioRaiseVolume exec   amixer -q sset Master 5+ unmute
+#bindsym XF86AudioLowerVolume exec   amixer -q sset Master 5- unmute
 #bindsym XF86AudioPrev        exec   amixer sset Master toggle
 #bindsym XF86AudioNext        exec   amixer sset Master toggle
 #bindsym XF86AudioPlay        exec   amixer sset Master toggle
