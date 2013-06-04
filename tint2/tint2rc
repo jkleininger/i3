@@ -20,7 +20,7 @@ border_color = #FFFFFF 100
 # Panel
 panel_monitor = all
 panel_position = bottom left horizontal
-panel_size = 1280 16
+panel_size = 1280 14
 panel_margin = 0 0
 panel_padding = 0 0 0
 panel_dock = 1
@@ -76,10 +76,8 @@ systray_icon_size = 0
 systray_icon_asb = 100 0 0
 
 # Clock
-time1_format = %H:%M
+time1_format = %a %d %b %H:%M
 time1_font = Silkscreen 6
-time2_format = %a %d %b
-time2_font = Silkscreen 6
 clock_font_color = #FFFFFF 100
 clock_tooltip = 
 clock_padding = 0 0
