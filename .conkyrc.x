@@ -25,7 +25,8 @@ color1			557799
 own_window_color	030309
 
 use_xft			yes
-xftfont			Silkscreen:size=6
+xftfont			Terminus:size=8
+#xftfont			Silkscreen:size=6
 
 use_spacer		none
 minimum_size		1280 1
@@ -38,7 +39,7 @@ L$color1${if_up enp0s10}${addr enp0s10}${else}DOWN${endif} $color0| \
 W$color1${if_up wlp3s0}${addr wlp3s0}${else}DOWN${endif} $color0| \
 B$color1${battery_percent BAT0}% $color0| \
 CPU1 $color1${cpu cpu1}%$color0 | CPU2 $color1${cpu cpu2}% $color0| \
-V $color1${exec $HOME/scripts/getvol} $color0| \
-G $color1[${execi 60 $HOME/scripts/gmail}] \
+V$color1${exec $HOME/scripts/getvol} $color0| \
+G$color1[${execi 60 $HOME/scripts/gmail}] \
 ${alignr} \
 $color1${time %a %d %b %H:%M}
